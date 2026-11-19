@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Виртуальная экскурсия по петербургским адресам Анны Ахматовой: карта, стихи, фото, аудио и задания">
+<title>По следам Анны Ахматовой — виртуальная экскурсия</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<a class="skip" href="#main">К содержанию</a>
+<header class="top">
+  <div>
+    <h1>По следам Анны Ахматовой</h1>
+    <p class="lead">Виртуальная экскурсия по петербургским адресам поэта: от царскосельской юности к «Реквиему»</p>
+  </div>
+  <nav class="tabs" aria-label="Разделы">
+    <button class="tab active" data-view="tour">Экскурсия</button>
+    <button class="tab" data-view="quiz">Задание</button>
+    <button class="tab" data-view="test">Итоговый тест</button>
+    <button class="tab" data-view="sus">Опрос</button>
+    <button class="tab" data-view="about">О проекте</button>
+  </nav>
+</header>
+<div id="group-banner" class="banner" hidden>Контрольная группа: вы читали текстовую версию. Пройдите итоговый тест.</div>
+
+<main id="main">
+  <section id="view-tour" class="view">
+    <div class="layout">
+      <aside class="side">
+        <div class="filters" role="group" aria-label="Порядок и фильтр">
+          <label>Порядок:
+            <select id="order"><option value="chrono">хронология</option><option value="theme">по темам</option></select>
+          </label>
+          <label>Тема:
+            <select id="theme-filter"><option value="">все</option></select>
+          </label>
+          <button class="btn ghost" id="fit">Весь маршрут</button>
+        </div>
+        <p class="routeinfo" id="routeinfo"></p>
+        <ol id="point-list" class="plist"></ol>
+      </aside>
+      <div class="mapwrap">
+        <div id="map" role="application" aria-label="Карта маршрута"></div>
+        <div id="map-fallback" class="fallback" hidden>Карта не загрузилась (нет интернета). Маршрут доступен списком.</div>
+      </div>
+      <article id="card" class="card" aria-live="polite"></article>
+    </div>
+  </section>
+
+  <section id="view-quiz" class="view" hidden>
+    <div class="panel">
+      <h2>Какая строка написана об этом месте?</h2>
+      <p class="muted">Тренировка: вопросы перемешиваются при каждом прохождении.</p>
+      <div id="quiz-box"></div>
+    </div>
+  </section>
+
+  <section id="view-test" class="view" hidden>
+    <div class="panel">
+      <h2>Итоговый тест</h2>
+      <p class="muted">10 вопросов. Тест одинаковый для всех — по нему сравниваются группы «экскурсия» и «текст».</p>
+      <p class="muted small">Ответы анонимны и хранятся только в этом браузере. Продолжая, вы соглашаетесь на их использование в учебном исследовании; младше 14 лет — с разрешения родителей или учителя. <a href="privacy.html">Подробнее</a></p>
+      <div id="test-box"></div>
+    </div>
+  </section>
+
+  <section id="view-sus" class="view" hidden>
+    <div class="panel">
+      <h2>Насколько удобен сайт? (опрос SUS)</h2>
+      <p class="muted">Оцените каждое утверждение: 1 — совсем не согласен, 5 — полностью согласен.</p>
+      <p class="muted small">Ответы анонимны и хранятся только в этом браузере. Продолжая, вы соглашаетесь на их использование в учебном исследовании; младше 14 лет — с разрешения родителей или учителя. <a href="privacy.html">Подробнее</a></p>
+      <form id="sus-form"></form>
+      <div id="sus-result"></div>
+    </div>
+  </section>
+
+  <section id="view-about" class="view" hidden>
+    <div class="panel">
+      <h2>О проекте</h2>
+      <p>Проект «Сириус.Лето» 2026/27 «"Петербургский текст" в судьбе и творчестве Анны Ахматовой». Партнёр — ГПОУ «Гимназия искусств при Главе Республики Коми» им. Ю. А. Спиридонова.</p>
+      <p>Понятие «петербургский текст» — образ города как единого сверхтекста русской литературы — ввёл В. Н. Топоров. Маршрут показывает, как адреса Ахматовой входят в её стихи.</p>
+      <p>Команда проекта «Сириус.Лето» 2026/27.</p>
+      <p><a href="text.html">Текстовая версия экскурсии</a> (для контрольной группы).</p>
+      <h3>Результаты на этом устройстве</h3>
+      <div id="results-box"></div>
+      <h3>Источники и права</h3>
+      <ul>
+        <li>Адреса и годы — статья «Ахматова, Анна Андреевна» (раздел «Адреса», ru.wikipedia.org) и материалы Музея Анны Ахматовой в Фонтанном доме.</li>
+        <li>Стихи Анны Ахматовой охраняются авторским правом. Приводятся только короткие фрагменты с указанием произведения в учебных целях (ст. 1274 ГК РФ).</li>
+        <li>Фотографии — Wikimedia Commons, авторы и лицензии указаны под каждым снимком.</li>
+        <li>Аудио — синтезированный голос (черновик), будет заменён чтением участниц.</li>
+        <li>Картографические данные © участники OpenStreetMap, библиотека карт — Leaflet.</li>
+      </ul>
+      <h3>Данные пользователей</h3>
+      <p>Организатор: команда проекта «Сириус.Лето». Сайт не собирает персональные данные и не использует cookie (<a href="privacy.html">конфиденциальность и условия</a>). Результаты теста и опроса хранятся только в этом браузере (localStorage) без имени; их можно выгрузить в CSV или удалить кнопкой выше.</p>
+    </div>
+  </section>
+</main>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="data.js"></script>
+<script src="data/credits.js"></script>
+<script src="logic.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

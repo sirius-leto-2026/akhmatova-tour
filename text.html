@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>По следам Анны Ахматовой — текстовая версия</title><link rel="stylesheet" href="styles.css">
+<style>main{max-width:760px;margin:0 auto;padding:16px}article{border-bottom:1px solid var(--line);padding:12px 0}</style></head>
+<body><main>
+<h1>По следам Анны Ахматовой — текстовая версия</h1>
+<p class="muted">Версия для контрольной группы: та же информация, что в экскурсии, но без карты, фото и заданий. Прочитайте текст, затем пройдите <a href="index.html?group=text">итоговый тест</a>.</p>
+<div id="list"></div>
+<p><a href="index.html?group=text">Перейти к итоговому тесту →</a> · <a href="privacy.html">Конфиденциальность и условия</a></p>
+</main>
+<script src="data.js"></script>
+<script>
+const esc=s=>String(s||"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+document.getElementById("list").innerHTML=TOUR.points.map((p,i)=>`<article><h2>${i+1}. ${esc(p.name)}</h2>
+<p class="muted">${esc(p.address)} · ${esc(p.years)}</p>${p.quote?`<blockquote class="quote">${esc(p.quote)}<cite>Анна Ахматова. ${esc(p.source)}</cite></blockquote>`:""}
+<p>${esc(p.bio)}</p><p><b>Мотив:</b> ${esc(p.motif)}</p></article>`).join("");
+</script></body></html>
