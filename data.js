@@ -8,7 +8,7 @@
 // Координаты: coord — Википедия/Wikidata; coord_check — геокодер OpenStreetMap Nominatim
 // (независимая сверка). Цитаты сверены дословно с текстами
 // на rustih.com (см. data/quotes_verification.csv). Приводятся только фрагменты (ст. 1274 ГК РФ).
-// Аудио — синтезированный голос (черновик); заменить на чтение участниц (см. README).
+// Аудио — нейросетевой синтез речи Edge TTS (черновик); заменить на чтение участниц (см. README).
 window.TOUR = {
   "title": "По следам Анны Ахматовой",
   "themes": {
@@ -33,7 +33,7 @@ window.TOUR = {
       "source": "«Смуглый отрок бродил по аллеям…», 1911",
       "motif": "юность, Пушкин, царскосельский парк",
       "photo_now": "img/gymn_now.jpg", "photo_then": "",
-      "audio": "audio/gymn.wav"
+      "audio": "audio/gymn.mp3"
     },
     {
       "id": "malaya",
@@ -49,7 +49,7 @@ window.TOUR = {
       "source": "«Царскосельская ода» («Девятисотые годы»)",
       "motif": "уездное Царское Село, память о юности",
       "photo_now": "img/malaya_now.jpg", "photo_then": "",
-      "audio": "audio/malaya.wav"
+      "audio": "audio/malaya.mp3"
     },
     {
       "id": "sobaka",
@@ -65,7 +65,7 @@ window.TOUR = {
       "source": "«Все мы бражники здесь, блудницы…», 1913",
       "motif": "богема, тревога за праздником",
       "photo_now": "img/sobaka_now.jpg", "photo_then": "",
-      "audio": "audio/sobaka.wav"
+      "audio": "audio/sobaka.mp3"
     },
     {
       "id": "tuchkov",
@@ -81,7 +81,7 @@ window.TOUR = {
       "source": "«Покинув рощи родины священной…»",
       "motif": "начало пути, «низкий остров» в невской дельте",
       "photo_now": "img/tuchkov_now.jpg", "photo_then": "",
-      "audio": "audio/tuchkov.wav"
+      "audio": "audio/tuchkov.mp3"
     },
     {
       "id": "letniy",
@@ -97,7 +97,7 @@ window.TOUR = {
       "source": "«Летний сад», 1959",
       "motif": "сад, ограда, вечность города",
       "photo_now": "img/letniy_now.jpg", "photo_then": "",
-      "audio": "audio/letniy.wav"
+      "audio": "audio/letniy.mp3"
     },
     {
       "id": "mramorny",
@@ -113,7 +113,7 @@ window.TOUR = {
       "source": "«Опять подошли “незабвенные даты”…»",
       "motif": "Марсово поле, прощание с прошлым",
       "photo_now": "img/mramorny_now.jpg", "photo_then": "",
-      "audio": "audio/mramorny.wav"
+      "audio": "audio/mramorny.mp3"
     },
     {
       "id": "smolensk",
@@ -129,7 +129,7 @@ window.TOUR = {
       "source": "«А Смоленская нынче именинница…» (Памяти Ал. Блока)",
       "motif": "прощание с поэтом, конец эпохи",
       "photo_now": "img/smolensk_now.jpg", "photo_then": "",
-      "audio": "audio/smolensk.wav"
+      "audio": "audio/smolensk.mp3"
     },
     {
       "id": "fontanny",
@@ -145,7 +145,7 @@ window.TOUR = {
       "source": "«Особенных претензий не имею…»",
       "motif": "дом, память, «Бог сохраняет всё»",
       "photo_now": "img/fontanny_now.jpg", "photo_then": "",
-      "audio": "audio/fontanny.wav"
+      "audio": "audio/fontanny.mp3"
     },
     {
       "id": "kresty",
@@ -161,7 +161,7 @@ window.TOUR = {
       "source": "«Реквием», Эпилог",
       "motif": "материнское горе, общая судьба",
       "photo_now": "img/kresty_now.jpg", "photo_then": "",
-      "audio": "audio/kresty.wav"
+      "audio": "audio/kresty.mp3"
     },
     {
       "id": "pamyatnik",
@@ -177,7 +177,7 @@ window.TOUR = {
       "source": "«Реквием», Эпилог",
       "motif": "память, завещание поэта",
       "photo_now": "img/pamyatnik_now.jpg", "photo_then": "",
-      "audio": "audio/pamyatnik.wav"
+      "audio": "audio/pamyatnik.mp3"
     },
     {
       "id": "komarovo",
@@ -193,7 +193,7 @@ window.TOUR = {
       "source": "«Приморский сонет», 1958",
       "motif": "итог жизни, природа, вечность",
       "photo_now": "img/komarovo_now.jpg", "photo_then": "",
-      "audio": "audio/komarovo.wav"
+      "audio": "audio/komarovo.mp3"
     }
   ]
 };

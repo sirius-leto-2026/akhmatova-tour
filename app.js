@@ -66,6 +66,7 @@
   function initMap() {
     if (typeof L === "undefined") { $("#map-fallback").hidden = false; return; }
     map = L.map("map", { scrollWheelZoom: true });
+    map.attributionControl.setPrefix('<a href="https://leafletjs.com" target="_blank" rel="noopener">Leaflet</a>');
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", { maxZoom: 18, attribution: "© участники OpenStreetMap" }).addTo(map);
     markers = T.points.map((p, i) => L.marker(p.coord, {
       icon: L.divIcon({ className: "", html: `<div class="pin">${i + 1}</div>`, iconSize: [28, 28], iconAnchor: [14, 14] }),
@@ -93,7 +94,7 @@
       <p class="addr">${esc(p.address)} · ${esc(p.years)}</p>
       <blockquote class="quote">${esc(p.quote)}<cite>Анна Ахматова. ${esc(p.source)}</cite></blockquote>
       <audio controls preload="none" src="${esc(p.audio)}" aria-label="Чтение фрагмента"></audio>
-      <p class="note">Чтение: синтезированный голос (черновик).</p>
+      <p class="note">Чтение: нейросетевой синтез речи (черновик).</p>
       <p>${esc(p.bio)}</p>
       <p><span class="tag">мотив</span>${esc(p.motif)}</p>
       <div class="compare ${hasThen ? "" : "single"}" id="cmp">
