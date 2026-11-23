@@ -1,4 +1,4 @@
-// Авторы и лицензии фото (Wikimedia Commons). Генерируется из data/photo_credits.json.
+// Авторы и лицензии фото (Wikimedia Commons).
 window.PHOTO_CREDITS = {
  "gymn_now": {
   "file": "img/gymn_now.jpg",

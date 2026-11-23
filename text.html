@@ -1,8 +1,26 @@
 <!doctype html>
-<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>По следам Анны Ахматовой — текстовая версия</title><link rel="stylesheet" href="styles.css">
-<style>main{max-width:760px;margin:0 auto;padding:16px}article{border-bottom:1px solid var(--line);padding:12px 0}</style></head>
-<body><main>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Текстовая версия экскурсии «По следам Анны Ахматовой»: 11 остановок, стихи, биография и маршрут — для чтения без карты и аудио.">
+<meta name="theme-color" content="#6b2737">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:site_name" content="По следам Анны Ахматовой">
+<meta property="og:title" content="По следам Анны Ахматовой — текстовая версия">
+<meta property="og:description" content="Текстовая версия экскурсии «По следам Анны Ахматовой»: 11 остановок, стихи, биография и маршрут — для чтения без карты и аудио.">
+<meta property="og:url" content="https://sirius-leto-2026.github.io/akhmatova-tour/text.html">
+<meta property="og:image" content="https://sirius-leto-2026.github.io/akhmatova-tour/img/fontanny_now.jpg">
+<meta property="og:image:width" content="960">
+<meta property="og:image:height" content="480">
+<meta property="og:image:alt" content="Фонтанный дом — главный петербургский адрес Анны Ахматовой">
+<title>По следам Анны Ахматовой — текстовая версия</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='12'%20fill='%236b2737'/%3E%3Ctext%20x='32'%20y='45'%20font-family='Georgia,serif'%20font-size='38'%20fill='%23faf6f0'%20text-anchor='middle'%3E%D0%90%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<main class="doc">
 <h1>По следам Анны Ахматовой — текстовая версия</h1>
 <p class="muted">Версия для контрольной группы: та же информация, что в экскурсии, но без карты, фото и заданий. Прочитайте текст, затем пройдите <a href="index.html?group=text">итоговый тест</a>.</p>
 <div id="list"></div>
@@ -14,4 +32,6 @@ const esc=s=>String(s||"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&g
 document.getElementById("list").innerHTML=TOUR.points.map((p,i)=>`<article><h2>${i+1}. ${esc(p.name)}</h2>
 <p class="muted">${esc(p.address)} · ${esc(p.years)}</p>${p.quote?`<blockquote class="quote">${esc(p.quote)}<cite>Анна Ахматова. ${esc(p.source)}</cite></blockquote>`:""}
 <p>${esc(p.bio)}</p><p><b>Мотив:</b> ${esc(p.motif)}</p></article>`).join("");
-</script></body></html>
+</script>
+</body>
+</html>

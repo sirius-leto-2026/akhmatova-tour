@@ -3,8 +3,20 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Виртуальная экскурсия по петербургским адресам Анны Ахматовой: карта, стихи, фото, аудио и задания">
+<meta name="description" content="Виртуальная экскурсия по петербургским адресам Анны Ахматовой: 11 остановок, карта, стихи, фотографии, аудиогид и учебные задания.">
+<meta name="theme-color" content="#6b2737">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:site_name" content="По следам Анны Ахматовой">
+<meta property="og:title" content="По следам Анны Ахматовой — виртуальная экскурсия">
+<meta property="og:description" content="Виртуальная экскурсия по петербургским адресам Анны Ахматовой: 11 остановок, карта, стихи, фотографии, аудиогид и учебные задания.">
+<meta property="og:url" content="https://sirius-leto-2026.github.io/akhmatova-tour/">
+<meta property="og:image" content="https://sirius-leto-2026.github.io/akhmatova-tour/img/fontanny_now.jpg">
+<meta property="og:image:width" content="960">
+<meta property="og:image:height" content="480">
+<meta property="og:image:alt" content="Фонтанный дом — главный петербургский адрес Анны Ахматовой">
 <title>По следам Анны Ахматовой — виртуальная экскурсия</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='12'%20fill='%236b2737'/%3E%3Ctext%20x='32'%20y='45'%20font-family='Georgia,serif'%20font-size='38'%20fill='%23faf6f0'%20text-anchor='middle'%3E%D0%90%3C/text%3E%3C/svg%3E">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -16,11 +28,11 @@
     <p class="lead">Виртуальная экскурсия по петербургским адресам поэта: от царскосельской юности к «Реквиему»</p>
   </div>
   <nav class="tabs" aria-label="Разделы">
-    <button class="tab active" data-view="tour">Экскурсия</button>
-    <button class="tab" data-view="quiz">Задание</button>
-    <button class="tab" data-view="test">Итоговый тест</button>
-    <button class="tab" data-view="sus">Опрос</button>
-    <button class="tab" data-view="about">О проекте</button>
+    <button class="tab active" data-view="tour" aria-pressed="true">Экскурсия</button>
+    <button class="tab" data-view="quiz" aria-pressed="false">Задание</button>
+    <button class="tab" data-view="test" aria-pressed="false">Итоговый тест</button>
+    <button class="tab" data-view="sus" aria-pressed="false">Опрос</button>
+    <button class="tab" data-view="about" aria-pressed="false">О проекте</button>
   </nav>
 </header>
 <div id="group-banner" class="banner" hidden>Контрольная группа: вы читали текстовую версию. Пройдите итоговый тест.</div>
@@ -45,7 +57,7 @@
         <div id="map" role="application" aria-label="Карта маршрута"></div>
         <div id="map-fallback" class="fallback" hidden>Карта не загрузилась (нет интернета). Маршрут доступен списком.</div>
       </div>
-      <article id="card" class="card" aria-live="polite"></article>
+      <article id="card" class="card" tabindex="-1" aria-live="polite"></article>
     </div>
   </section>
 
@@ -79,12 +91,14 @@
   <section id="view-about" class="view" hidden>
     <div class="panel">
       <h2>О проекте</h2>
-      <p>Проект «Сириус.Лето» 2026/27 «"Петербургский текст" в судьбе и творчестве Анны Ахматовой». Партнёр — ГПОУ «Гимназия искусств при Главе Республики Коми» им. Ю. А. Спиридонова.</p>
+      <p>Проект «Сириус.Лето» 2026/27 «„Петербургский текст“ в судьбе и творчестве Анны Ахматовой». Партнёр — ГПОУ «Гимназия искусств при Главе Республики Коми» им. Ю. А. Спиридонова.</p>
       <p>Понятие «петербургский текст» — образ города как единого сверхтекста русской литературы — ввёл В. Н. Топоров. Маршрут показывает, как адреса Ахматовой входят в её стихи.</p>
       <p>Команда проекта «Сириус.Лето» 2026/27.</p>
       <p><a href="text.html">Текстовая версия экскурсии</a> (для контрольной группы).</p>
       <h3>Результаты на этом устройстве</h3>
       <div id="results-box"></div>
+      <h3>Прогресс прослушивания</h3>
+      <div id="progress-box"></div>
       <h3>Источники и права</h3>
       <ul>
         <li>Адреса и годы — статья «Ахматова, Анна Андреевна» (раздел «Адреса», ru.wikipedia.org) и материалы Музея Анны Ахматовой в Фонтанном доме.</li>
@@ -94,15 +108,15 @@
         <li>Картографические данные © участники OpenStreetMap, библиотека карт — Leaflet.</li>
       </ul>
       <h3>Данные пользователей</h3>
-      <p>Организатор: команда проекта «Сириус.Лето». Сайт не собирает персональные данные и не использует cookie (<a href="privacy.html">конфиденциальность и условия</a>). Результаты теста и опроса хранятся только в этом браузере (localStorage) без имени; их можно выгрузить в CSV или удалить кнопкой выше.</p>
+      <p>Организатор: команда проекта «Сириус.Лето». Сайт не собирает персональные данные и не использует cookie (<a href="privacy.html">конфиденциальность и условия</a>). Результаты теста и опроса, а также отметки о прослушанных остановках хранятся только в этом браузере (localStorage) без имени; результаты можно выгрузить в CSV или удалить кнопками выше.</p>
     </div>
   </section>
 </main>
 
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="data.js"></script>
-<script src="data/credits.js"></script>
-<script src="logic.js"></script>
-<script src="app.js"></script>
+<script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script defer src="data.js"></script>
+<script defer src="data/credits.js"></script>
+<script defer src="logic.js"></script>
+<script defer src="app.js"></script>
 </body>
 </html>
