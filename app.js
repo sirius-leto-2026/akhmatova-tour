@@ -147,7 +147,30 @@
     }
     map = L.map("map", { scrollWheelZoom: true });
     map.attributionControl.setPrefix('<a href="https://leafletjs.com" target="_blank" rel="noopener">Leaflet</a>');
-    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", { maxZoom: 18, attribution: "© участники OpenStreetMap" }).addTo(map);
+    // Подложка карты: основной сервер OSM, при сбое — резервные (важно для сетей, где часть CDN недоступна).
+    const tileProviders = [
+      { url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", sub: "abc", attr: "© участники OpenStreetMap" },
+      { url: "https://tile.openstreetmap.de/{z}/{x}/{y}.png", sub: "", attr: "© участники OpenStreetMap (DE)" },
+      { url: "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png", sub: "abcd", attr: "© OpenStreetMap, © CARTO" },
+    ];
+    let tileIndex = 0, tileErrors = 0, tileLayer = null;
+    function addTiles() {
+      const p = tileProviders[tileIndex];
+      tileErrors = 0;
+      tileLayer = L.tileLayer(p.url, { maxZoom: 18, subdomains: p.sub || "abc", attribution: p.attr }).addTo(map);
+      tileLayer.on("tileerror", () => {
+        tileErrors++;
+        if (tileErrors > 6 && tileIndex < tileProviders.length - 1) {
+          map.removeLayer(tileLayer);
+          tileIndex++;
+          addTiles();
+        } else if (tileErrors > 12) {
+          const note = document.getElementById("map-note");
+          if (note) { note.hidden = false; note.textContent = "Карта не загрузилась — сеть ограничивает доступ к тайлам. Полный список остановок ниже."; }
+        }
+      });
+    }
+    addTiles();
     markers = T.points.map((p, i) => L.marker(p.coord, {
       icon: L.divIcon({ className: "", html: `<div class="pin">${i + 1}</div>`, iconSize: [28, 28], iconAnchor: [14, 14] }),
       title: p.name, keyboard: true,
